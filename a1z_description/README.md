@@ -2,8 +2,9 @@
 
 - `a1z_flange_description`: six-axis arm ending at the bare flange.
 - `a1z_g1z_description`: the same arm with the G1Z gripper body and two moving fingers.
+- [`a1z_g1z_camera_description`](./a1z_g1z_camera_description/): G1Z variant with a white camera mesh, optical frame, 1920×1200 fisheye calibration and a ROS 2 Jazzy/RViz2 preview with robot self-occlusion. See its README for startup commands, extrinsics and limitations.
 
-The two models have identical `base_link` through `arm_link5` definitions and
+The Flange and G1Z models have identical `base_link` through `arm_link5` definitions and
 meshes, and identical `arm_joint1` through `arm_joint6` definitions. Mesh package
 prefixes differ. `arm_link6` deliberately differs: the G1Z model includes the
 stationary gripper body in this link, while the Flange model contains only the
@@ -34,5 +35,8 @@ Historical CAD CSV files, export logs, and unused joint-name configurations have
 been removed. The URDF files define the current models. These remain ROS 1 catkin
 packages. Package names and launch URDF paths have been aligned, and display
 launch files no longer reference a
-missing RViz configuration. No ROS/RViz/Gazebo runtime, catkin build, hardware test,
-or independent CAD mass-property verification was performed.
+missing RViz configuration. The Flange/G1Z ROS 1 launches, catkin build, hardware
+and independent CAD mass properties remain unverified. The camera variant adds
+a separate ROS 2 preview; its RViz2 model, camera frames and joint-dependent
+fisheye/self-occlusion view were run locally in conda Jazzy. It does not provide
+a Gazebo physics simulation or a hand-eye-calibrated camera pose.

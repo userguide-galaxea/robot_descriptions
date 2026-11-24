@@ -18,6 +18,7 @@ ROS package names have changed. Update downstream launch files, package dependen
 
 Robot Arm:
 - [A1Z URDF](./a1z_description/)
+- [A1Z G1Z camera, calibration and ROS 2 preview](./a1z_description/a1z_g1z_camera_description/)
 - [A1X URDF](./a1x_description/)
 - [A1Y URDF](./a1y_description/)
 - [A1 URDF](./a1_description/)

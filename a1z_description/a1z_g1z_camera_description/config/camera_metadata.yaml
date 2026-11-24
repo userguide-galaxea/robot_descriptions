@@ -1,0 +1,15 @@
+# Description metadata; not a camera_info_manager calibration file.
+camera_name: a1z_g1z_camera
+optical_frame_id: camera_optical_frame
+calibration_file: camera_info.yaml
+calibration_model: opencv_fisheye
+calibration_parameter_source: user_supplied
+calibration_tool: camera_calibration_toolkit
+# The active stream's crop/resize/rotation/rectification is not yet verified.
+active_stream_matches_calibration: null
+nominal_lens_fov_degrees:
+  source: manufacturer
+  diagonal: 220.0
+  horizontal: 210.0
+  vertical: 128.0
+# Nominal lens FOV is not a measured valid-image mask or calibrated FOV.
