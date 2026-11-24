@@ -24,7 +24,7 @@ Robot Arm:
 - [A1 URDF](./a1_description/)
 
 Robot:
-- [LEMO URDF](./lemo_description/)
+- [LEMO URDF, wrist/head cameras, calibration and ROS 2 preview](./lemo_description/)
 - [R1 Pro 2026 URDF](./r1pro_description/r1pro_g1z_2026_description/)
 - [R1 Lite 2026 URDF](./r1lite_description/urdf_r1lite_2026/)
 - [R1 PRO 2025 URDF](./r1pro_description/urdf_r1pro_2025.urdf)

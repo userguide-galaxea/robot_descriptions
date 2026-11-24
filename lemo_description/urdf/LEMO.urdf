@@ -1069,4 +1069,89 @@
 		  multiplier="-1"
 		  offset="0" />
 	</joint>
+  <!-- Wrist cameras inherit the final A1Z G1Z camera mounting transforms.
+       Head optical centre in base_link: (0.04749, 0, 0.55059) m.
+       Head view: +X toward -Z, downward 59 deg. The housing-to-optical
+       transform is shared by all three cameras. No camera inertia supplied. -->
+  <link name="L_camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lemo_description/meshes/camera_link.STL" />
+      </geometry>
+      <material name="L_camera_white">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lemo_description/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="L_camera_joint" type="fixed">
+    <origin xyz="0.06125 0 0.0311" rpy="0 0 -1.570796326794897" />
+    <parent link="L_arm_link6" />
+    <child link="L_camera_link" />
+  </joint>
+
+  <link name="L_camera_optical_frame" />
+
+  <joint name="L_camera_optical_joint" type="fixed">
+    <origin xyz="0 0.02379 0.02788" rpy="-2.059488517353309 0 0" />
+    <parent link="L_camera_link" />
+    <child link="L_camera_optical_frame" />
+  </joint>
+
+  <link name="R_camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lemo_description/meshes/camera_link.STL" />
+      </geometry>
+      <material name="R_camera_white">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lemo_description/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="R_camera_joint" type="fixed">
+    <origin xyz="0.06125 0 0.0311" rpy="0 0 -1.570796326794897" />
+    <parent link="R_arm_link6" />
+    <child link="R_camera_link" />
+  </joint>
+
+  <link name="R_camera_optical_frame" />
+
+  <joint name="R_camera_optical_joint" type="fixed">
+    <origin xyz="0 0.02379 0.02788" rpy="-2.059488517353309 0 0" />
+    <parent link="R_camera_link" />
+    <child link="R_camera_optical_frame" />
+  </joint>
+
+  <!-- The head camera housing is already included in base_link.STL. -->
+  <link name="head_camera_link" />
+
+  <joint name="head_camera_joint" type="fixed">
+    <origin xyz="0.012738728387804 0 0.538944931458535" rpy="-0.541052068118242 0 -1.570796326794897" />
+    <parent link="base_link" />
+    <child link="head_camera_link" />
+  </joint>
+
+  <link name="head_camera_optical_frame" />
+
+  <joint name="head_camera_optical_joint" type="fixed">
+    <origin xyz="0 0.02379 0.02788" rpy="-2.059488517353309 0 0" />
+    <parent link="head_camera_link" />
+    <child link="head_camera_optical_frame" />
+  </joint>
+
 </robot>

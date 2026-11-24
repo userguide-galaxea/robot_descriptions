@@ -1,0 +1,32 @@
+# Raw-image calibration at 1920 x 1200, supplied by the user.
+# OpenCV fisheye model confirmed in camera_calibration_toolkit.
+# Associated optical frame: head_camera_optical_frame (see camera_metadata.yaml).
+image_width: 1920
+image_height: 1200
+camera_name: lemo_head_camera
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [502.11930305, 0.0, 959.57189046,
+         0.0, 502.24270153, 607.78054424,
+         0.0, 0.0, 1.0]
+distortion_model: equidistant
+distortion_coefficients:
+  rows: 1
+  cols: 4
+  # OpenCV fisheye order: k1, k2, k3, k4 (not tangential coefficients).
+  data: [0.07152829, -0.00915829, -0.00363625, 0.00253335]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1.0, 0.0, 0.0,
+         0.0, 1.0, 0.0,
+         0.0, 0.0, 1.0]
+# Monocular convention P = [K | 0]. This is not the toolkit's optimized
+# K_undistort_preview and does not describe an existing rectified stream.
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [502.11930305, 0.0, 959.57189046, 0.0,
+         0.0, 502.24270153, 607.78054424, 0.0,
+         0.0, 0.0, 1.0, 0.0]

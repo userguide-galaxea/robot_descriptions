@@ -12,6 +12,7 @@
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>roslaunch</exec_depend>
   <exec_depend>rviz</exec_depend>
+  <exec_depend>a1z_g1z_camera_description</exec_depend>
 
   <export>
     <architecture_independent />

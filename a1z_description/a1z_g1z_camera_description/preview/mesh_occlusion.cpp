@@ -56,7 +56,7 @@ struct Mesh {
         int left=build(start,mid-start),right=build(mid,start+count-mid);
         nodes[idx].left=left;nodes[idx].right=right;return idx;
     }
-    bool intersect(V o,V d,float& nearest,V& normal) const {
+    bool intersect(V o,V d,float& nearest,V& normal,float minimum=.0001f) const {
         if(nodes.empty())return false;
         bool found=false;int stack[128],top=0;stack[top++]=0;
         while(top) {
@@ -72,7 +72,7 @@ struct Mesh {
                     V qvec=cross(tvec,t.e1);float v=dot(d,qvec)*inv;
                     if(v<0 || u+v>1)continue;
                     float distance=dot(t.e2,qvec)*inv;
-                    if(distance>.0001f && distance<nearest) {nearest=distance;normal=t.normal;found=true;}
+                    if(distance>minimum && distance<nearest) {nearest=distance;normal=t.normal;found=true;}
                 }
             } else {stack[top++]=node.left;stack[top++]=node.right;}
         }
@@ -100,17 +100,17 @@ void* mesh_load(const char* path) {
 void mesh_free(void* ptr) {delete static_cast<Mesh*>(ptr);}
 // Rays are unit vectors in base_link. Matrices are row-major base_T_link.
 // distances contains existing scene depths and is updated with nearest hits.
-void mesh_occlude(void** handles,const float* matrices,int mesh_count,
+void mesh_occlude_near(void** handles,const float* matrices,int mesh_count,
                   const float* origin,const float* rays,int ray_count,
-                  float* distances,uint8_t* rgb,uint8_t* mask) {
-    struct Instance {const Mesh* mesh;V origin;std::array<float,16> T;};
+                  float* distances,uint8_t* rgb,uint8_t* mask,const float* minimums) {
+    struct Instance {const Mesh* mesh;V origin;std::array<float,16> T;float minimum;};
     std::vector<Instance> instances;
     for(int m=0;m<mesh_count;++m) {
         const float* T=matrices+m*16;V delta{origin[0]-T[3],origin[1]-T[7],origin[2]-T[11]};
         V local{T[0]*delta.x+T[4]*delta.y+T[8]*delta.z,
                 T[1]*delta.x+T[5]*delta.y+T[9]*delta.z,
                 T[2]*delta.x+T[6]*delta.y+T[10]*delta.z};
-        Instance in{static_cast<Mesh*>(handles[m]),local,{}};std::copy(T,T+16,in.T.begin());instances.push_back(in);
+        Instance in{static_cast<Mesh*>(handles[m]),local,{},minimums ? minimums[m] : .0001f};std::copy(T,T+16,in.T.begin());instances.push_back(in);
     }
     auto work=[&](int first,int last) {
         for(int i=first;i<last;++i) {
@@ -120,7 +120,7 @@ void mesh_occlude(void** handles,const float* matrices,int mesh_count,
                 V d{T[0]*world.x+T[4]*world.y+T[8]*world.z,
                     T[1]*world.x+T[5]*world.y+T[9]*world.z,
                     T[2]*world.x+T[6]*world.y+T[10]*world.z},normal;
-                if(in.mesh->intersect(in.origin,d,distances[i],normal)) {
+                if(in.mesh->intersect(in.origin,d,distances[i],normal,in.minimum)) {
                     V n{T[0]*normal.x+T[1]*normal.y+T[2]*normal.z,
                         T[4]*normal.x+T[5]*normal.y+T[6]*normal.z,
                         T[8]*normal.x+T[9]*normal.y+T[10]*normal.z};
@@ -136,4 +136,12 @@ void mesh_occlude(void** handles,const float* matrices,int mesh_count,
     for(unsigned t=0;t<threads;++t)workers.emplace_back(work,ray_count*t/threads,ray_count*(t+1)/threads);
     for(auto& t:workers)t.join();
 }
+// Preserve the original entry point and A1Z behavior.
+void mesh_occlude(void** handles,const float* matrices,int mesh_count,
+                  const float* origin,const float* rays,int ray_count,
+                  float* distances,uint8_t* rgb,uint8_t* mask) {
+    mesh_occlude_near(handles,matrices,mesh_count,origin,rays,ray_count,
+                      distances,rgb,mask,nullptr);
+}
+
 }

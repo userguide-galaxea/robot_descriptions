@@ -1,0 +1,27 @@
+# Description metadata; not a camera_info_manager calibration file.
+calibration_model: opencv_fisheye
+calibration_parameter_source: a1z_g1z_camera_description/config/camera_info.yaml
+active_stream_matches_calibration: null
+nominal_lens_fov_degrees:
+  source: manufacturer
+  diagonal: 220.0
+  horizontal: 210.0
+  vertical: 128.0
+# Nominal lens FOV is not a measured valid-image mask or calibrated FOV.
+head_pose_reference: base_link
+head_pose_position_semantics: optical_center
+head_pose_position_m: [0.04749, 0.0, 0.55059]
+head_view_down_degrees: 59.0
+cameras:
+  L_camera:
+    camera_name: lemo_L_camera
+    optical_frame_id: L_camera_optical_frame
+    calibration_file: L_camera_info.yaml
+  R_camera:
+    camera_name: lemo_R_camera
+    optical_frame_id: R_camera_optical_frame
+    calibration_file: R_camera_info.yaml
+  head_camera:
+    camera_name: lemo_head_camera
+    optical_frame_id: head_camera_optical_frame
+    calibration_file: head_camera_info.yaml
