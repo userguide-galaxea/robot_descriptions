@@ -2,7 +2,7 @@
 <robot name="LEMO">
   <!--
     LEMO dual-arm platform. Base mesh registration is estimated from supplied data.
-    All URDF lengths are metres. The supplied mounting positions were:
+    All URDF lengths are metres. The default mounting positions are:
       L: (0,  375, 5) mm -> (0,  0.375, 0.005) m
       R: (0, -375, 5) mm -> (0, -0.375, 0.005) m
     Both A1Z mounting frames use rpy="0 0 0".
@@ -41,6 +41,8 @@
   </link>
 
   <joint name="L_arm_mount_joint" type="fixed">
+    <!-- Set the second xyz component (Y) to 0.300, 0.325, 0.350 or 0.375 m.
+         Choose each side independently. The default left offset is +0.375 m. -->
     <origin xyz="0 0.375 0.005" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="L_arm_base_link" />
@@ -556,6 +558,8 @@
 	</joint>
 
   <joint name="R_arm_mount_joint" type="fixed">
+    <!-- Set the second xyz component (Y) to -0.300, -0.325, -0.350 or -0.375 m.
+         Choose each side independently. The default right offset is -0.375 m. -->
     <origin xyz="0 -0.375 0.005" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="R_arm_base_link" />

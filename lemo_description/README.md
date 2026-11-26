@@ -32,13 +32,27 @@ Use `gui:=false` to publish default joint states without joint sliders.
   registration provenance; this file is not loaded at runtime.
 
 Lengths are in metres, masses in kilograms and inertias in kg m². The base STL
-uses scale `0.001 0.001 0.001`; arm meshes use unit scale. Arm mounts are at
-`(0, ±0.375, 0.005)` m, both with zero rotation.
+uses scale `0.001 0.001 0.001`; arm meshes use unit scale.
 
 Base mesh registration is estimated from mesh geometry and uniform-density
 mass properties and has not been confirmed against the CAD frame. Gripper
 limits of 3 N and 10.47 m/s are inherited values, not validated hardware limits.
 The historical `rIght` spelling in finger names is retained for compatibility.
+
+## 左右臂安装间距
+
+左右臂可独立选择距 `base_link` 中心的安装档位。默认左右各 **375 mm**，两臂安装中心距为 **750 mm**。
+
+| 单侧距中心（mm） | 左臂 `L_arm_mount_joint` 的 `origin xyz`（m） | 右臂 `R_arm_mount_joint` 的 `origin xyz`（m） |
+| --- | --- | --- |
+| 300 | `0 0.300 0.005` | `0 -0.300 0.005` |
+| 325 | `0 0.325 0.005` | `0 -0.325 0.005` |
+| 350 | `0 0.350 0.005` | `0 -0.350 0.005` |
+| **375（默认）** | `0 0.375 0.005` | `0 -0.375 0.005` |
+
+在 [`urdf/LEMO.urdf`](urdf/LEMO.urdf) 中找到对应的安装关节，按表修改 `origin xyz` 的第二个数（Y）。
+左臂取正值，右臂取负值。两臂安装中心距是两侧档位之和，例如左侧 350 mm、右侧 300 mm 时，中心距为 650 mm。
+保存后重启 `roslaunch lemo_description display.launch`。如果另存为新的 URDF，启动时加上 `model:=<新文件的绝对路径>`。
 
 ## 相机安装与坐标系
 
