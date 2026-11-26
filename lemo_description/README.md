@@ -85,6 +85,10 @@ The historical `rIght` spelling in finger names is retained for compatibility.
 相机没有添加未知的质量和惯量；上述安装外参为给定尺寸下的名义值，
 尚未通过实物标定验证。
 
+### 头部相机立杆 CAD
+
+完整立杆和立杆上端各有 STEP 模型、PDF 图纸和外观预览。见 [CAD 仓库的 LEMO 目录](https://github.com/userguide-galaxea/CAD_files/tree/main/LEMO)。
+
 ## 相机内参
 
 三台相机复用 A1Z 的 **1920×1200 原始鱼眼图像**标定，模型为
