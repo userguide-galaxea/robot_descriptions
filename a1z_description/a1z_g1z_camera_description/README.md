@@ -1,5 +1,11 @@
 # A1Z G1Z camera
 
+## URDF exterior previews
+
+| Model | URDF file | Preview |
+| --- | --- | --- |
+| A1Z G1Z Camera | [`A1Z_G1Z_CAMERA.urdf`](urdf/A1Z_G1Z_CAMERA.urdf) | <a href="previews/a1z_g1z_camera.png"><img src="previews/a1z_g1z_camera.png" alt="A1Z G1Z Camera exterior" width="240"></a> |
+
 基于 `a1z_g1z_description` 的带相机版本，保留原机械臂及夹爪定义，新增
 `arm_link6 -> camera_link -> camera_optical_frame` 两个固定关节。
 相机外观为白色；当前安装原点为 `(61.25, 0, 31.10) mm`，

@@ -1,5 +1,13 @@
 # A1Z models
 
+## URDF exterior previews
+
+| Model | URDF file | Preview |
+| --- | --- | --- |
+| A1Z Flange | [`A1Z_Flange.urdf`](a1z_flange_description/urdf/A1Z_Flange.urdf) | <a href="a1z_flange_description/previews/a1z_flange.png"><img src="a1z_flange_description/previews/a1z_flange.png" alt="A1Z Flange exterior" width="240"></a> |
+| A1Z G1Z | [`A1Z_G1Z.urdf`](a1z_g1z_description/urdf/A1Z_G1Z.urdf) | <a href="a1z_g1z_description/previews/a1z_g1z.png"><img src="a1z_g1z_description/previews/a1z_g1z.png" alt="A1Z G1Z exterior" width="240"></a> |
+| A1Z G1Z Camera | [`A1Z_G1Z_CAMERA.urdf`](a1z_g1z_camera_description/urdf/A1Z_G1Z_CAMERA.urdf) | <a href="a1z_g1z_camera_description/previews/a1z_g1z_camera.png"><img src="a1z_g1z_camera_description/previews/a1z_g1z_camera.png" alt="A1Z G1Z Camera exterior" width="240"></a> |
+
 - `a1z_flange_description`: six-axis arm ending at the bare flange.
 - `a1z_g1z_description`: the same arm with the G1Z gripper body and two moving fingers.
 - [`a1z_g1z_camera_description`](./a1z_g1z_camera_description/): G1Z variant with a white camera mesh, optical frame, 1920×1200 fisheye calibration and a ROS 2 Jazzy/RViz2 preview with robot self-occlusion. See its README for startup commands, extrinsics and limitations.

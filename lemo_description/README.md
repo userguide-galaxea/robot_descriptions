@@ -1,5 +1,11 @@
 # LEMO robot description
 
+## URDF exterior previews
+
+| Model | URDF file | Preview |
+| --- | --- | --- |
+| LEMO | [`LEMO.urdf`](urdf/LEMO.urdf) | <a href="previews/lemo.png"><img src="previews/lemo.png" alt="LEMO exterior" width="240"></a> |
+
 ROS 1 catkin description package for the LEMO dual-A1Z platform with G1Z grippers,
 two wrist cameras and one head camera.
 The ROS package name is `lemo_description`.
